@@ -2,3 +2,12 @@
 @import '~bootstrap/dist/css/bootstrap.css';
 @import '~font-awesome/css/font-awesome.min.css';
 @import 'mixins';
+
+@font-face {
+  font-family: 'Playfair Display';
+  src: url('assets/fonts/Playfair_Display/PlayfairDisplay-Regular.ttf');
+}
+@font-face {
+  font-family: 'Herr Von Muellerhoff';
+  src: url('assets/fonts/HerrVonMuellerhoff-Regular.ttf');
+}
