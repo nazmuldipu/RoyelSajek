@@ -1,0 +1,57 @@
+:host {
+  display: block;
+  background-color: lightcyan;
+  height: 85px;
+}
+
+.navbar {
+  &-brand {
+    height: 85px;
+    padding: 0 0 0 120px;
+    &-img {
+      size: 120px;
+    }
+  }
+}
+.nav {
+  &-item {
+    padding: 15px 20px;
+  }
+  &-link {
+    cursor: pointer;
+    padding: 0 !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: black;
+  }
+}
+
+.book-button {
+  height: 85px;
+  max-width: 260px;
+  border-radius: 0;
+  color: white;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 18px;
+  background-color: #c19b76;
+  border: none;
+  & img {
+    height: 60px;
+    display: inline-block;
+    width: 45%;
+    border-right: 1px solid white;
+  }
+  &:hover {
+    background-color: #97714c;
+  }
+}
+.search-button {
+  height: 85px;
+  border-radius: 0;
+  max-width: 100px;
+  & img {
+    height: 60px;
+    display: inline-block;
+  }
+}
