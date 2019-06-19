@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { StaticDataSource } from 'src/shared/models/static.datasource';
+import { Package } from 'src/shared/models/package.model';
 
 @Component({
   selector: 'app-index',
@@ -6,10 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

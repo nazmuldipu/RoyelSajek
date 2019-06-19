@@ -6,6 +6,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { IndexComponent } from './containers/index/index.component';
 import { HomeComponent } from './home.component';
 import { RoomsComponent } from './components/rooms/rooms.component';
+import { OurToursComponent } from './components/our-tours/our-tours.component';
 
 export const ROUTES: Routes = [
   {
@@ -21,7 +22,7 @@ export const ROUTES: Routes = [
 ];
 
 @NgModule({
-  declarations: [HomeComponent, IndexComponent, NavbarComponent, RoomsComponent],
+  declarations: [HomeComponent, IndexComponent, NavbarComponent, RoomsComponent, OurToursComponent],
   imports: [SharedModule, RouterModule.forChild(ROUTES)]
 })
 export class HomeModule {}

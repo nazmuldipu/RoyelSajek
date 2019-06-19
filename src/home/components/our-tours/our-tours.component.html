@@ -1,0 +1,138 @@
+<section-title
+  [head]="head"
+  [title]="title"
+  [background]="background"
+></section-title>
+<div class="container text-center">
+  <p
+    style="font-size: 20px;
+  font-weight: 300;
+  line-height: 1.5;"
+  >
+    To start the day in the best way, enjoying the extraordinary buffet <br />
+    breakfast in the quiet of our courtyard caressed by the
+  </p>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12 d-none d-md-block">
+        <nav class="navbar navbar-expand-md">
+          <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item" [ngClass]="{ active: location == null }">
+                <a class="nav-link" (click)="getPackageForUser()">ALL</a>
+              </li>
+              <li
+                class="nav-item"
+                [ngClass]="{ active: location == 'COXS BAZAR' }"
+              >
+                <a class="nav-link" (click)="getPackageForUser('COXS BAZAR')">
+                  COXS BAZAR
+                </a>
+              </li>
+              <li
+                class="nav-item "
+                [ngClass]="{ active: location == 'SAINT MARTIN' }"
+              >
+                <a class="nav-link" (click)="getPackageForUser('SAINT MARTIN')">
+                  SAINT MARTINS
+                </a>
+              </li>
+              <li
+                class="nav-item"
+                [ngClass]="{ active: location == 'BANDARBANS' }"
+              >
+                <a class="nav-link" (click)="getPackageForUser('BANDARBANS')">
+                  BANDARBANS
+                </a>
+              </li>
+              <li
+                class="nav-item"
+                [ngClass]="{ active: location == 'RANGAMATI' }"
+              >
+                <a class="nav-link" (click)="getPackageForUser('RANGAMATI')">
+                  RANGAMATI
+                </a>
+              </li>
+              <li class="nav-item" [ngClass]="{ active: location == 'SAJEK' }">
+                <a class="nav-link" (click)="getPackageForUser('SAJEK')"
+                  >SAJEK</a
+                >
+              </li>
+              <li class="nav-item" [ngClass]="{ active: location == 'SYLHET' }">
+                <a class="nav-link" (click)="getPackageForUser('SYLHET')">
+                  SYLHET
+                </a>
+              </li>
+              <li
+                class="nav-item"
+                [ngClass]="{ active: location == 'SUNDARBAN' }"
+              >
+                <a class="nav-link" (click)="getPackageForUser('SUNDARBAN')">
+                  SUNDARBAN
+                </a>
+              </li>
+              <li
+                class="nav-item"
+                [ngClass]="{ active: location == 'COMBINED' }"
+              >
+                <a class="nav-link" (click)="getPackageForUser('COMBINED')">
+                  COMBINED
+                </a>
+              </li>
+              <li
+                class="nav-item"
+                [ngClass]="{ active: location == 'INTERNATIONAL' }"
+              >
+                <a
+                  class="nav-link"
+                  (click)="getPackageForUser('INTERNATIONAL')"
+                >
+                  INTERNATIONAL
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="row pt-5">
+      <div class="col-md-4" *ngFor="let package of packages">
+        <div class="packages-card" *ngIf="package.imagePaths?.length">
+          <img
+            class="packages-card-image"
+            [src]="package.imagePaths[0]"
+            alt="image"
+          />
+          <div class="packages-card-info">
+            <div class="packages-card-info-line1">{{ package.title }}</div>
+            <div
+              class="packages-card-info-line2 d-flex justify-content-between"
+            >
+              <span class="packages-card-info-line2-category"
+                >{{ package.category }}
+              </span>
+              <span> From </span>
+            </div>
+            <div class="packages-card-info-line3">{{ package.price }} Taka</div>
+            <div class="packages-card-info-line4">
+              <i class="fa fa-clock-o"></i> {{ package.duration }}
+            </div>
+            <a
+              class="btn btn packages-card-info-btn"
+              routerLink="/packages/{{ package.id }}"
+            >
+              SEE DETAILS
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-end py-3">
+      <a class="btn btn btn-primary" routerLink="/packages/create-own-package">
+        Create Your Own Package
+      </a>
+    </div>
+  </div>
+</div>
