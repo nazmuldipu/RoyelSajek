@@ -1,9 +1,10 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
+import { StaticDataSource } from 'src/shared/models/static.datasource';
 
 import { AppComponent } from './app.component';
-import { StaticDataSource } from 'src/shared/models/static.datasource';
 
 // routes
 export const ROUTES: Routes = [
@@ -15,7 +16,11 @@ export const ROUTES: Routes = [
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, RouterModule.forRoot(ROUTES)],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    RouterModule.forRoot(ROUTES)
+  ],
   providers: [StaticDataSource],
   bootstrap: [AppComponent]
 })

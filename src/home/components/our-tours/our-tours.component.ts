@@ -12,7 +12,7 @@ export class OurToursComponent implements OnInit {
   title = 'Our Tours';
   background = 'Destination';
 
-  private packages: Package[] = [];
+  packages: Package[] = [];
   location;
   constructor(private dataSource: StaticDataSource) {}
 

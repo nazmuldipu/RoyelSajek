@@ -9,10 +9,12 @@
 }
 
 .room {
+  display: block;
+  position: relative;
   padding: 50px 0;
   &-content {
     position: absolute;
-    top: 50%;
+    top: 30%;
     width: 510px;
     padding: 45px 50px;
     background: #fff;
