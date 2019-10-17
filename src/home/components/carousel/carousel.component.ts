@@ -60,11 +60,11 @@ export class CarouselComponent implements OnInit {
 
   currentIndex = 0;
   slides = [
-    { image: 'assets/images/gallery/g1.jpg', description: 'Image 00' },
-    { image: 'assets/images/gallery/g2.jpg', description: 'Image 01' },
-    { image: 'assets/images/gallery/g3.jpg', description: 'Image 02' },
-    { image: 'assets/images/gallery/g4.jpg', description: 'Image 03' },
-    { image: 'assets/images/gallery/g5.jpg', description: 'Image 04' }
+    { image: 'assets/images/front-1.jpg', description: 'Image 00' },
+    { image: 'assets/images/front-2.jpg', description: 'Image 01' },
+    { image: 'assets/images/front-3.jpg', description: 'Image 02' }
+    // { image: 'assets/images/gallery/g4.jpg', description: 'Image 03' },
+    // { image: 'assets/images/gallery/g5.jpg', description: 'Image 04' }
   ];
   preloadImages() {
     this.slides.forEach(slide => {
