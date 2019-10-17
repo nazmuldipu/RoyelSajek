@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   NgxGalleryOptions,
   NgxGalleryImage,
-  NgxGalleryAnimation
+  NgxGalleryAnimation,
+  NgxGalleryComponent
 } from 'ngx-gallery';
+import { Example } from 'src/shared/models/example.model';
 
 @Component({
   selector: 'gallery',
@@ -15,50 +17,31 @@ export class GalleryComponent implements OnInit {
   title = 'Gallery';
   background = 'Beauty';
 
-  galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
+  onlyPreviewExample: Example;
+  @ViewChild('onlyPreviewGallery', { static: false })
+  onlyPreviewGallery: NgxGalleryComponent;
 
   ngOnInit(): void {
-    this.galleryOptions = [
+    let images = new Array<NgxGalleryImage>();
+    images.push({ big: 'assets/images/rooms/room-1.jpg' });
+    images.push({ big: 'assets/images/rooms/room-2.jpg' });
+    images.push({ big: 'assets/images/rooms/room-3.jpg' });
+    images.push({ big: 'assets/images/rooms/room-4.jpg' });
+    images.push({ big: 'assets/images/rooms/room-5.jpg' });
+    images.push({ big: 'assets/images/rooms/room-6.jpg' });
+    this.galleryImages = images;
+    this.onlyPreviewExample = new Example('Only preview', this.galleryImages, [
       {
-        width: '600px',
-        height: '400px',
-        thumbnailsColumns: 4,
-        imageAnimation: NgxGalleryAnimation.Slide
-      },
-      // max-width 800
-      {
-        breakpoint: 800,
-        width: '100%',
-        height: '600px',
-        imagePercent: 80,
-        thumbnailsPercent: 20,
-        thumbnailsMargin: 20,
-        thumbnailMargin: 20
-      },
-      // max-width 400
-      {
-        breakpoint: 400,
-        preview: false
+        image: false,
+        thumbnails: false,
+        width: '0px',
+        height: '0px'
       }
-    ];
+    ]);
+  }
 
-    this.galleryImages = [
-      {
-        small: 'assets/images/gallery/g1.jpg',
-        medium: 'assets/images/gallery/g1.jpg',
-        big: 'assets/images/gallery/g1.jpg'
-      },
-      {
-        small: 'assets/images/gallery/g2.jpg',
-        medium: 'assets/images/gallery/g2.jpg',
-        big: 'assets/images/gallery/g2.jpg'
-      },
-      {
-        small: 'assets/images/gallery/g3.jpg',
-        medium: 'assets/images/gallery/g3.jpg',
-        big: 'assets/images/gallery/g3.jpg'
-      }
-    ];
+  openPreview(i: number): void {
+    this.onlyPreviewGallery.openPreview(i);
   }
 }

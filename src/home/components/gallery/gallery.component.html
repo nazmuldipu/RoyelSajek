@@ -1,7 +1,14 @@
-<section-title
-  [head]="head"
-  [title]="title"
-  [background]="background"
-></section-title>
+<section-title [head]="head" [title]="title" [background]="background"></section-title>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 p-2" *ngFor="let ima of galleryImages; let i = index">
+      <img class="gallery-image" [src]="ima.big" alt="" (click)="openPreview(i)" />
+    </div>
+  </div>
+</div>
+<div class="container">
+  <ngx-gallery [options]="onlyPreviewExample?.options" [images]="onlyPreviewExample?.images" #onlyPreviewGallery></ngx-gallery>
+</div>
 
-<ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+
+<!-- <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery> -->
