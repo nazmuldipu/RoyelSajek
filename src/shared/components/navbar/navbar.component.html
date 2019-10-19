@@ -1,69 +1,37 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top p-0">
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" routerLink="/">
     <img class="navbar-brand-img" src="assets/images/logo.png" alt="logo" />
   </a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#RoyelNavbar"
-    aria-controls="RoyelNavbar"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-    (click)="toggleCollapse()"
-  >
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#RoyelNavbar" aria-controls="RoyelNavbar"
+    aria-expanded="false" aria-label="Toggle navigation" (click)="toggleCollapse()">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="RoyelNavbar" [class.show]="show">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#">Rooms</a>
+        <a class="nav-link" (click)="toggleCollapse()" routerLink="/rooms">Rooms</a>
       </li>
       <li class="nav-item">
         <div ngbDropdown class="d-inline-block">
           <a class="nav-link" id="adminCategory" ngbDropdownToggle> Features</a>
           <div ngbDropdownMenu aria-labelledby="adminCategory">
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/category/add"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/category/add">
               Shop
             </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/category"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/category">
               Reservation
             </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/category"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/category">
               About us
             </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/category"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/category">
               Gallery
             </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/category"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/category">
               404 Page
             </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/category"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/category">
               Coming Soon
             </a>
           </div>
@@ -73,16 +41,11 @@
         <a class="nav-link" href="#">Blog</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Contact</a>
+        <a class="nav-link" routerLink="/contact">Contact</a>
       </li>
     </ul>
     <button class="btn btn-success book-button">
-      <img
-        class="navbar-brand-img"
-        src="assets/images/hotel-bell.svg"
-        alt="logo"
-      />
-      &nbsp; Book Now
+      <img class="navbar-brand-img" src="assets/images/hotel-bell.svg" alt="logo" /> &nbsp; Book Now
     </button>
     <button class="btn search-button btn-light">
       <img class="navbar-brand-img" src="assets/images/search.svg" alt="logo" />

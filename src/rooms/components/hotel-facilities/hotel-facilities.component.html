@@ -1,0 +1,289 @@
+<button type="button" class="btn btn-info btn-block d-block d-sm-none mt-2" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
+  aria-controls="hotelFacilities">
+  <i class="fa fa-bar-chart"></i> Hotel Facilites
+</button>
+<div id="hotelFacilities" [ngbCollapse]="isCollapsed">
+  <ul class="list-group mt-3">
+    <li class="list-group-item list-group-item-info">
+      <h5>Hotel Facilities</h5>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.frontDesk">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">24 Hours Front Desk</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.roomService">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">24 Hours Room Service</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.electricity">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">24 Hours Electricity</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.security">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">24 Hours Security</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.acceptCreditCard">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">Accept Credit Card</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.complementaryBreakfast">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">Complementary Breakfast</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.restaurant">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">Restaurant</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.coffeeShop">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">Coffee Shop</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <!-- <li class="list-group-item list-group-item-action" *ngIf="facilities?.ac">
+    <div class="d-flex">
+      <div class="flex-grow-1 ">AC</div>
+      <div class=""><i class="fa fa-check"></i></div>
+    </div>
+  </li> -->
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.lift">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">Lift</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.wifi">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">Free Wifi</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.freeParking">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">Free Parking</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.newspaper">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">Newspaper</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.swimmingPool">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">Swimming Pool</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.laundry">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">Laundry</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.lobby">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">Lobby</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.sportsZone">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">Sports Zone</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.gym">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">Gymnesiam</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.spa">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">SPA</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.bar">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">Bar</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.helipad">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">Helipad</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.vipFloor">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">VIP Floor</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.foreignExchange">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">Foreign Exchange</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.airportTransportation">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">Airport Transportation</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.conferenceRoom">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">Conference Room</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.businessCenter">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">Business Center</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.meetingRoom">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">Meeting Room</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.executiveLaunge">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">Executive Launge</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.babySitting">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">Baby Sitting</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.doctorOnCall">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">Doctor On Call</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.wakeupService">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">Wakeup Service</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.wheelChairAccessible">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">Wheel Chair Accessible</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.safeDepositBox">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">Safe Deposit Box</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.nonSmokingRoom">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">Non Smoking Room</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item list-group-item-action" *ngIf="facilities?.freeCancellation">
+      <div class="d-flex">
+        <div class="flex-grow-1 ">Free Cancellation</div>
+        <div class="">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

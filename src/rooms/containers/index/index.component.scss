@@ -1,0 +1,48 @@
+.hotel {
+    font-size: 14px;
+    &-col1 {
+      flex: 0 0 5%;
+      max-width: 55%;
+    }
+    &-col2 {
+      flex: 0 0 20%;
+      max-width: 20%;
+      padding-right: 15px;
+    }
+    &-col3 {
+      flex: 0 0 70%;
+      max-width: 70%;
+    }
+  
+    &-address {
+      margin: 10px 0;
+      font-size: 14px;
+      font-family: 'Roboto', sans-serif;
+    }
+    &-image {
+      width: 100%;
+      height: 450px;
+    }
+  }
+  .list-group-item {
+    cursor: pointer;
+    padding: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+  }
+  
+  @media (max-width: 767px) {
+    .hotel {
+      &-image {
+        width: 100%;
+        height: 200px;
+      }
+    }
+    .input-group-text {
+      font-size: 0.75rem;
+    }
+    .form-control {
+      font-size: 0.75rem;
+    }
+  }
+  

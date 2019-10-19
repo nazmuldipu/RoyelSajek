@@ -1,0 +1,246 @@
+<div class="hotel">
+  <div class="container">
+    <div class="row mt-3">
+      <div class="col-md-3 d-none d-sm-block">
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-action">
+            <div class="d-flex">
+              <div class="flex-grow-1 ">{{ hotel?.type }} Status</div>
+              <div class="">
+                <i class="fa fa-circle " [ngClass]="
+                    hotel?.online === true ? 'text-success' : 'text-secondary'
+                  "></i>
+                {{ hotel?.online ? 'Online' : 'Ofline' }}
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item list-group-item-action">
+            <div class="d-flex">
+              <div class="flex-grow-1 ">Star Rating</div>
+              <div class="">
+                <span class="badge badge-primary">{{ hotel?.star }}</span>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item list-group-item-action">
+            <div class="d-flex">
+              <div class="flex-grow-1 ">Total Rooms</div>
+              <div class="">
+                <span class="badge badge-success">{{ totalRoomNumber }}</span>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item list-group-item-action">
+            <div class="d-flex">
+              <div class="flex-grow-1 ">Number of AC rooms</div>
+              <div class="">
+                <span class="badge badge-success">{{ totalAcRoom }}</span>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item list-group-item-action">
+            <div class="d-flex">
+              <div class="flex-grow-1 ">Number of NON-AC rooms</div>
+              <div class="">
+                <span class="badge badge-success">{{ totalNonAcRoom }}</span>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item list-group-item-action text-center">
+            <span class="badge badge-pill badge-success ">
+              {{ hotel?.discount }}% Discount
+            </span>
+          </li>
+        </ul>
+        <!-- Hotel falilities -->
+        <hotel-facilities [facilities]="hotel?.facilities"></hotel-facilities>
+      </div>
+      <div class="col-md-9" *ngIf="hotel?.imagePaths?.length">
+        <div class="row">
+          <div class="col-12">
+            <div class="hotel-name">
+              <h4>{{ hotel?.name }}</h4>
+            </div>
+            <div class="hotel-address">
+              <i class="fa fa-map-marker" aria-hidden="true"></i>
+              {{ hotel?.address?.area ? hotel.address.area + ',' : '' }} {{ hotel?.address?.city ? hotel.address.city + ',' : '' }} {{
+              hotel?.address?.district ? hotel.address.district + ',' : '' }} {{ hotel?.address?.country ? hotel.address.country
+              + ',' : '' }}
+            </div>
+          </div>
+        </div>
+        <ngb-carousel [showNavigationArrows]="false">
+          <ng-template ngbSlide *ngFor="let url of hotel.imagePaths">
+            <img class="hotel-image" [src]="url" alt="hotel image 1" />
+          </ng-template>
+        </ngb-carousel>
+        <div class="col-md-3 d-none d-sm-none">
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-action">
+              <div class="d-flex">
+                <div class="flex-grow-1 ">{{ hotel?.type }} Status</div>
+                <div class="">
+                  <i class="fa fa-circle " [ngClass]="
+                      hotel?.online === true ? 'text-success' : 'text-secondary'
+                    "></i>
+                  {{ hotel?.online ? 'Online' : 'Ofline' }}
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item list-group-item-action">
+              <div class="d-flex">
+                <div class="flex-grow-1 ">Star Rating</div>
+                <div class="">
+                  <span class="badge badge-primary">{{ hotel?.star }}</span>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item list-group-item-action">
+              <div class="d-flex">
+                <div class="flex-grow-1 ">Total Rooms</div>
+                <div class="">
+                  <span class="badge badge-success">{{ totalRoomNumber }}</span>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item list-group-item-action">
+              <div class="d-flex">
+                <div class="flex-grow-1 ">Number of AC rooms</div>
+                <div class="">
+                  <span class="badge badge-success">{{ totalAcRoom }}</span>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item list-group-item-action">
+              <div class="d-flex">
+                <div class="flex-grow-1 ">Number of NON-AC rooms</div>
+                <div class="">
+                  <span class="badge badge-success">{{ totalNonAcRoom }}</span>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item list-group-item-action text-center">
+              <span class="badge badge-pill badge-success ">
+                {{ hotel?.discount }}% Discount
+              </span>
+            </li>
+          </ul>
+          <!-- Hotel falilities -->
+          <hotel-facilities [facilities]="hotel?.facilities"></hotel-facilities>
+        </div>
+        <div class="py-4 text-justify">{{ hotel?.description }}</div>
+        <div class="col-md-3 p-0 d-block d-sm-none">
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-action">
+              <div class="d-flex">
+                <div class="flex-grow-1 ">{{ hotel?.type }} Status</div>
+                <div class="">
+                  <i class="fa fa-circle " [ngClass]="
+                      hotel?.online === true ? 'text-success' : 'text-secondary'
+                    "></i>
+                  {{ hotel?.online ? 'Online' : 'Ofline' }}
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item list-group-item-action">
+              <div class="d-flex">
+                <div class="flex-grow-1 ">Star Rating</div>
+                <div class="">
+                  <span class="badge badge-primary">{{ hotel?.star }}</span>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item list-group-item-action">
+              <div class="d-flex">
+                <div class="flex-grow-1 ">Total Rooms</div>
+                <div class="">
+                  <span class="badge badge-success">{{ totalRoomNumber }}</span>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item list-group-item-action">
+              <div class="d-flex">
+                <div class="flex-grow-1 ">Number of AC rooms</div>
+                <div class="">
+                  <span class="badge badge-success">{{ totalAcRoom }}</span>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item list-group-item-action">
+              <div class="d-flex">
+                <div class="flex-grow-1 ">Number of NON-AC rooms</div>
+                <div class="">
+                  <span class="badge badge-success">{{ totalNonAcRoom }}</span>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item list-group-item-action text-center">
+              <span class="badge badge-pill badge-success ">
+                {{ hotel?.discount }}% Discount
+              </span>
+            </li>
+          </ul>
+          <!-- Hotel falilities -->
+          <hotel-facilities [facilities]="hotel?.facilities"></hotel-facilities>
+        </div>
+        <div class="hotel-map">
+          <div class="box-body" style="padding: 0;">
+            <p hidden="hidden" id="mapSource">Cox's bazar airport</p>
+            <p hidden="hidden" id="mapDestination">Dhaka</p>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-12">
+            <div class="border">
+              <form class="mt-2 d-flex justify-content-center">
+                <div class="form-row align-items-center">
+                  <div class="col-auto" *ngIf="categoryList?.length > 0">
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">Category</div>
+                      </div>
+                      <select class="form-control" [(ngModel)]="categoryId" name="categoryId" (change)="onCategoryChange($event.target.value)">
+                        <option value="">All</option>
+                        <option *ngFor="let cat of categoryList" [value]="cat.id">
+                          {{ cat.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-auto" style="max-width: 100%;">
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">Check Availability</div>
+                      </div>
+                      <input type="text" class="form-control" name="daterangeInput" daterangepicker [options]="options" (selected)="selectedDate($event, daterange)"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <form class="my-2 d-flex justify-content-center">
+                <div class="col-auto">
+                  <input type="number" class="form-control" id="date1" placeholder="Filter room number" (keyup)="onFilterChange($event.target.value)"
+                  />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="row m-0 my-4" *ngIf="roomList && !(roomFilterList && roomFilterList.length > 0)">
+          <div class="col-md-4 p-0 mt-3" *ngFor="let room of roomList">
+            <room-card [room]="room" (details)="onRoomDetails($event)" (booking)="onRoomBooking($event)">
+            </room-card>
+          </div>
+        </div>
+        <div class="row m-0 my-4" *ngIf="roomFilterList && roomFilterList.length > 0">
+          <div class="col-md-4 p-0 mt-3" *ngFor="let room of roomFilterList">
+            <room-card [room]="room" (details)="onRoomDetails($event)" (booking)="onRoomBooking($event)">
+            </room-card>
+          </div>
+        </div>
+      </div>
+      <div class="hotel-col1"></div>
+    </div>
+  </div>
+</div>

@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  hotelsWaveId: 11,
+  PROTOCOL: 'https',
+  PORT: '',
+  SERVER: 'api.hotelswave.com',
+  // PROTOCOL: 'http',
+  // PORT: ':8080',
+  // SERVER: '192.168.0.10',
+
+  client_id: 'hotels_client',
+  client_secret: 'hotels_secret',
 };
 
 /*

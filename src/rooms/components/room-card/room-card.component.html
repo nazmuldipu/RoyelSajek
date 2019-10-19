@@ -1,0 +1,58 @@
+<div class="hotel-room-card" *ngIf="room.imagePaths?.length">
+  <img class="hotel-room-card-image" [src]="room.imagePaths[0]" alt="image" />
+  <div class="d-flex justify-content-between bd-highlight hotel-room-card-line1">
+    <div class="bd-highlight hotel-room-card-line1-roomnumber" *ngIf="room.category.hotel.online">
+      {{ room.roomNumber }}
+    </div>
+    <div class="bd-highlight hotel-room-card-line1-roomStatus" [ngClass]="{
+        available: room.available,
+        unavailable: !room.available
+      }">
+      {{ room.available ? 'Available' : 'Unavailable' }}
+    </div>
+  </div>
+  <div class="hotel-room-card-text">
+    <div class="hotel-room-card-text-head">
+      {{ room.category.name }} {{ room.facilities.airConditioned ? 'AC' : 'NON-AC' }}
+    </div>
+    <div class="hotel-room-card-text-line2 border-bottom ">
+      <div class="row pb-3 text-center">
+        <div class="col-4 p-1">
+          Price:
+          <br /> {{ room.price }} BDT
+        </div>
+        <div class="col-4 p-1">
+          Discount:
+          <br /> {{ room.discount }} BDT
+        </div>
+        <div class="col-4 p-1">
+          Payable:
+          <br />
+          <strong> {{ room.price - room.discount }} BDT</strong>
+        </div>
+      </div>
+    </div>
+    <div class="hotel-room-card-text-line3">
+      <span class="pr-2">
+        <i class="fa fa-male"></i> {{ room.category.maxAdultNumber }}
+      </span>
+      <span class="pr-2">
+        <i class="fa fa-child"></i> {{ room.category.maxChildNumber }}
+      </span>
+      <span class="pr-2">
+        <i class="fa fa-bed"></i> {{ room.numberOfBed }}
+      </span>
+      <span class="pr-2">
+        <i class="fa fa-object-ungroup"></i> {{ room.roomSize }} sqft
+      </span>
+    </div>
+    <div class="d-flex justify-content-between py-2">
+      <button class="btn btn-sm btn-success" (click)="onRoomDetails(room.id)">
+        Details
+      </button>
+      <button *ngIf="room.available" class="btn btn-sm btn-primary" (click)="onBookNow(room.id)">
+        Book now
+      </button>
+    </div>
+  </div>
+</div>
