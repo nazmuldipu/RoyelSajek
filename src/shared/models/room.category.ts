@@ -4,14 +4,10 @@ import { Sort } from './sort.model';
 
 export interface RoomCategory {
     id: number;
-    // created: Date;
-    // lastUpdated: Date;
     name: string;
     maxAdultNumber: number;
     maxChildNumber: number;
-    // images;
     hotel: Hotel;
-    // roomList: Room[];
 }
 
 export class RoomCategoryPage {

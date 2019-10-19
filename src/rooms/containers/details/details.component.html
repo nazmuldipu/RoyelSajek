@@ -1,3 +1,239 @@
-<p>
-  details works!
-</p>
+<div class="room-details">
+  <div class="container-fluid" style="z-index: -39;">
+    <div class="row">
+      <div class="col-12 p-0">
+        <img *ngIf="room?.imagePaths?.length" class="room-details-head-image" [src]="room.imagePaths[0]" alt="room image 1" />
+      </div>
+    </div>
+  </div>
+  <div class="container" style="z-index: 10;">
+    <div class="room-details-content">
+      <div class="row m-0 mt-4">
+        <div class="col-12">
+          <div class="room-details-header">
+            {{ room?.category?.name }} - {{ room?.facilities?.airConditioned ? 'AC' : 'NON-AC' }}
+          </div>
+        </div>
+        <div class="col-md-8 pt-4" style="background-color: white; z-index: 20;">
+          <div class="border-right pr-5">
+            <!-- {{ room | json }} -->
+            <div class="room-details-text">ROOM DETAILS</div>
+            <table class="table">
+              <tr>
+                <td>Guests :</td>
+                <td class="text-right">{{ room?.category?.maxAdultNumber }}</td>
+              </tr>
+              <tr>
+                <td>Kids :</td>
+                <td class="text-right">{{ room?.category?.maxChildNumber }}</td>
+              </tr>
+              <tr>
+                <td>Room size :</td>
+                <td class="text-right">{{ room?.roomSize }} sqft</td>
+              </tr>
+              <tr>
+                <td>Number of Beds :</td>
+                <td class="text-right">{{ room?.numberOfBed }}</td>
+              </tr>
+              <tr>
+                <td>Room type :</td>
+                <td class="text-right">{{ room?.category?.name }}</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+              </tr>
+            </table>
+          </div>
+          <div>
+            <div class="room-details-text">ROOM FACILITIES</div>
+            <div class="room-details-facilities">
+              <div class="row" style="background: lightgray; padding: 5px;">
+                <div class="col-md-2 col-6 p-0" *ngIf="room?.facilities?.airConditioned">
+                  <div class="room-details-facilities-box">
+                    <img class="room-details-facilities-box-image" src="/assets/svgs/airConditioned.svg" alt="airConditioned" />
+                    <div class="room-details-facilities-box-text">
+                      Air Conditioner
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2 col-6 p-0" *ngIf="room?.facilities?.breakfast">
+                  <div class="room-details-facilities-box">
+                    <img class="room-details-facilities-box-image" src="/assets/svgs/breakfast.svg" alt="bar" />
+                    <div class="room-details-facilities-box-text">
+                      Breakfast
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2 col-6 p-0" *ngIf="room?.facilities?.internet">
+                  <div class="room-details-facilities-box">
+                    <img class="room-details-facilities-box-image" src="/assets/svgs/laptop.svg" alt="airConditioned" />
+                    <div class="room-details-facilities-box-text">Internet</div>
+                  </div>
+                </div>
+                <div class="col-md-2 col-6 p-0" *ngIf="room?.facilities?.tv">
+                  <div class="room-details-facilities-box">
+                    <img class="room-details-facilities-box-image" src="/assets/svgs/tv.svg" alt="tv" />
+                    <div class="room-details-facilities-box-text">TV</div>
+                  </div>
+                </div>
+                <div class="col-md-2 col-6 p-0" *ngIf="room?.facilities?.hillView">
+                  <div class="room-details-facilities-box">
+                    <img class="room-details-facilities-box-image" src="/assets/svgs/hillView.svg" alt="hillView" />
+                    <div class="room-details-facilities-box-text">
+                      Hill View
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2 col-6 p-0" *ngIf="room?.facilities?.seaView">
+                  <div class="room-details-facilities-box">
+                    <img class="room-details-facilities-box-image" src="/assets/svgs/seaView.svg" alt="seaView" />
+                    <div class="room-details-facilities-box-text">See View</div>
+                  </div>
+                </div>
+
+                <div class="col-md-2 col-6 p-0" *ngIf="room?.facilities?.telephone">
+                  <div class="room-details-facilities-box">
+                    <img class="room-details-facilities-box-image" src="/assets/svgs/telephone.svg" alt="telephone" />
+                    <div class="room-details-facilities-box-text">
+                      Telephone
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2 col-6 p-0" *ngIf="room?.facilities?.bathTowel">
+                  <div class="room-details-facilities-box">
+                    <img class="room-details-facilities-box-image" src="/assets/svgs/bathTowel.svg" alt="bathTowel" />
+                    <div class="room-details-facilities-box-text">
+                      Bath Towel
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2 col-6 p-0" *ngIf="room?.facilities?.tableAndChair">
+                  <div class="room-details-facilities-box">
+                    <img class="room-details-facilities-box-image" src="/assets/svgs/tableAndChair.svg" alt="tableAndChair" />
+                    <div class="room-details-facilities-box-text">
+                      Table And Chair
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2 col-6 p-0" *ngIf="room?.facilities?.kitchen">
+                  <div class="room-details-facilities-box">
+                    <img class="room-details-facilities-box-image" src="/assets/svgs/kitchen.svg" alt="kitchen" />
+                    <div class="room-details-facilities-box-text">Kitchen</div>
+                  </div>
+                </div>
+                <div class="col-md-2 col-6 p-0" *ngIf="room?.facilities?.bathTub">
+                  <div class="room-details-facilities-box">
+                    <img class="room-details-facilities-box-image" src="/assets/svgs/bathTub.svg" alt="bathTub" />
+                    <div class="room-details-facilities-box-text">Bathtub</div>
+                  </div>
+                </div>
+                <div class="col-md-2 col-6 p-0" *ngIf="room?.facilities?.balcony">
+                  <div class="room-details-facilities-box">
+                    <img class="room-details-facilities-box-image" src="/assets/svgs/balcony.svg" alt="balcony" />
+                    <div class="room-details-facilities-box-text">Balcony</div>
+                  </div>
+                </div>
+                <div class="col-md-2 col-6 p-0" *ngIf="room?.facilities?.petsAllowed">
+                  <div class="room-details-facilities-box">
+                    <img class="room-details-facilities-box-image" src="/assets/svgs/pet.svg" alt="petsAllowed" />
+                    <div class="room-details-facilities-box-text">
+                      Pets Allowed
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2 col-6 p-0" *ngIf="room?.facilities?.highCommode">
+                  <div class="room-details-facilities-box">
+                    <img class="room-details-facilities-box-image" src="/assets/svgs/highCommode.svg" alt="highCommode" />
+                    <div class="room-details-facilities-box-text">
+                      High Commode
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 pb-4 right-panel">
+          <div>
+            <strong>Vat and service charge : </strong> {{room?.vatService}}% of total payable</div>
+          <div class="input-group pt-5">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i class="fa fa-calendar"></i>
+              </div>
+            </div>
+            <input type="text" class="form-control" name="daterangeInput" daterangepicker [options]="options" (selected)="selectedDate($event)"
+            />
+          </div>
+
+          <div class="border my-4" *ngIf="priceMap">
+            <table class="table table-striped table-hover">
+              <tr>
+                <th>Date</th>
+                <th class="text-right">Price</th>
+              </tr>
+              <tr *ngFor="let item of (priceMap | keyvalue)">
+                <td>{{ item.key | date: 'd MMM,yy' }}</td>
+                <th class="text-right">BDT {{ item.value }}</th>
+              </tr>
+              <tr>
+                <th>Total</th>
+                <th class="text-right">
+                  <span class="room-details-price"> BDT {{ totalPrice }} </span>
+                </th>
+              </tr>
+            </table>
+          </div>
+          <div *ngIf="!priceMap" class="border my-4 text-center" style="padding-left: 20px;">
+            Price :
+            <span style=" font-size: 30px;font-weight: 600;">
+              {{ room?.price }} BDT
+            </span>
+            / PER NIGHT
+          </div>
+
+          <div *ngIf="!priceMap" class="border my-4 text-center" style="padding-left: 20px;">
+            Discount upto :
+            <span style=" font-size: 20px;font-weight: 600; color: red">
+              {{ discount }} BDT
+            </span>
+            / PER NIGHT
+          </div>
+
+          <button *ngIf="showCheckAvailability" class="btn btn-block btn-warning" (click)="checkRoomAvailability(room.id)">
+            SEE DISCOUNTED PRICE
+          </button>
+          <button *ngIf="showBookNow" class="btn btn-block btn-success" (click)="onRoomBooking(room.id)">
+            BOOK NOW
+          </button>
+          <button *ngIf="showUnavailable" class="btn btn-block btn-danger" (click)="goBack()">
+            SORRY THIS ROOM IS NOT AVAILABLE
+          </button>
+
+          <!-- {{ daterange | json }} -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid" *ngIf="room?.imagePaths?.length">
+    <div class="row mt-2">
+      <div class="col-md-6 p-0 py-1" *ngFor="
+          let imagePath of (room?.imagePaths | slice: 1);
+          let index = index;
+          let odd = odd;
+          let even = even
+        " [ngClass]="{ 'pl-md-1': odd, 'pr-md-1': even }">
+        <img class="room-details-bottom-image" [src]="imagePath" alt="room image 1" />
+      </div>
+      <!-- <div class="col-6 p-0 pl-md-1">
+        <img
+          *ngIf="room?.imagePaths?.length"
+          class="room-details-bottom-image"
+          [src]="room.imagePaths[2]"
+          alt="room image 1"
+        />
+      </div> -->
+    </div>
+  </div>
+</div>

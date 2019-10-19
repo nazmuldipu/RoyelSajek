@@ -1,0 +1,123 @@
+.table th,
+.table td {
+  padding: 0.15rem;
+}
+.room-details {
+  font-family: 'Questrial';
+  &-content {
+    margin-top: -220px;
+    border: 1px solid lightgray;
+  }
+  &-head {
+    &-image {
+      width: 100%;
+      height: auto;
+      min-height: 400px;
+    }
+  }
+  &-header {
+    text-align: center;
+    font-size: 35px;
+    font-weight: 700;
+    padding-bottom: 30px;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    z-index: 3;
+  }
+  &-image {
+    width: 100%;
+    height: 60vh;
+  }
+  &-text {
+    font-size: 24px;
+    font-weight: 600;
+  }
+  &-facilities {
+    background: rgba(0, 0, 0, 0.1);
+    // padding: 5px;
+    &-box {
+      background: white;
+      margin: 5px;
+      padding: 0px;
+      &-image {
+        padding: 5px 5px;
+        height: 60px;
+        width: 100%;
+      }
+      &-text {
+        text-align: center;
+        font-size: 14px;
+      }
+    }
+  }
+  &-bottom {
+    &-image {
+      width: 100%;
+      height: 60vh;
+    }
+  }
+  &-price {
+    font-size: 20px;
+    font-weight: 600;
+  }
+}
+
+.custom-day {
+  text-align: center;
+  padding: 0.185rem 0.25rem;
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+}
+.custom-day.focused {
+  background-color: #e6e6e6;
+}
+.custom-day.range,
+.custom-day:hover {
+  background-color: rgb(2, 117, 216);
+  color: white;
+}
+.custom-day.faded {
+  background-color: rgba(2, 117, 216, 0.5);
+}
+.right-panel {
+  background-color: white;
+  z-index: 20;
+  padding-top: 10px;
+}
+
+@media (max-width: 767px) {
+  .right-panel {
+    padding-top: 20px;
+  }
+  .room-details {
+    &-content {
+      margin-top: -120px;
+      border: 1px solid lightgray;
+    }
+    &-header {
+      font-size: 25px;
+      padding-bottom: 10px;
+    }
+    &-text {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    &-head {
+      &-image {
+        width: 100%;
+        height: 30vh;
+        min-height: 100px;
+      }
+    }
+    &-bottom {
+      &-image {
+        width: 100%;
+        height: 35vh;
+      }
+    }
+    &-price {
+      font-size: 16px;
+    }
+  }
+}

@@ -24,11 +24,13 @@ export class IndexComponent implements OnInit {
   totalAcRoom = 0;
   totalNonAcRoom = 0;
 
-  constructor(private router: Router, private hotelService: HotelService, private roomService: RoomService, private categoryService: CategoryService) { }
+  constructor(private router: Router, private hotelService: HotelService,
+    private roomService: RoomService, private categoryService: CategoryService) { }
 
   ngOnInit() {
     this.getHotelInfo();
     this.setDateRanges();
+    this.getRoomCategory();
   }
 
   setDateRanges() {
@@ -75,16 +77,27 @@ export class IndexComponent implements OnInit {
     });
   }
 
+  async getRoomCategory() {
+    await this.categoryService.getCategoryList().subscribe(data => {
+      this.categoryList = data;
+    });
+  }
+
+  onCategoryChange(event) {
+    this.categoryId = event;
+    if (event) {
+      console.log('Category : ', event);
+      this.roomFilterList = this.roomList.filter(rl => rl.category.id == event);
+    } else {
+      this.roomFilterList = this.roomList;
+    }
+    // this.getAvailableRoom(this.id, event);
+  }
 
   async getAvailableRoom(categoryId = null) {
-    const cin = this.hotelService.dateRange.checkInDate as Date;
-    const cout = this.hotelService.dateRange.checkOutDate as Date;
-
-    const checkinDate = cin.getFullYear() + '-' + (cin.getMonth() + 1) + '-' + cin.getDate();
-    const checkoutDate = cout.getFullYear() + '-' + (cout.getMonth() + 1) + '-' + cout.getDate();
-
-    await this.roomService.getAvailableRoomListByHotelId(checkinDate, checkoutDate, categoryId).subscribe(data => {
+    await this.roomService.getAvailableRoomListByHotelId(this.getCheckinDate(), this.getCheckoutDate(), categoryId).subscribe(data => {
       this.roomList = data;
+      this.roomFilterList = data;
       this.totalAcRoom = 0;
       this.totalNonAcRoom = 0;
       this.roomList.forEach(room => {
@@ -119,7 +132,6 @@ export class IndexComponent implements OnInit {
     );
   }
 
-
   async loadRoomCategoryImages(categoryId: number, roomId: number) {
     await this.categoryService
       .getCategoryImageUrls(categoryId)
@@ -133,6 +145,20 @@ export class IndexComponent implements OnInit {
           this.roomList.find(r => r.id === roomId).imagePaths = roomImagesUrl;
         }
       });
+  }
+
+  onRoomBooking(roomId: number) {
+    console.log(this.getCheckinDate(), this.getCheckoutDate(), roomId);
+  }
+
+  getCheckinDate(): string {
+    const cin = this.hotelService.dateRange.checkInDate as Date;
+    return cin.getFullYear() + '-' + (cin.getMonth() + 1) + '-' + cin.getDate();
+  }
+
+  getCheckoutDate(): string {
+    const cout = this.hotelService.dateRange.checkOutDate as Date;
+    return cout.getFullYear() + '-' + (cout.getMonth() + 1) + '-' + cout.getDate();
   }
 
 }
