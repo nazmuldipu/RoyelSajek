@@ -91,7 +91,12 @@ export class IndexComponent implements OnInit {
     } else {
       this.roomFilterList = this.roomList;
     }
-    // this.getAvailableRoom(this.id, event);
+  }
+
+  onFilterChange(event) {
+    this.roomFilterList = this.roomList.filter(room =>
+      room.roomNumber.toString().startsWith(event)
+    );
   }
 
   async getAvailableRoom(categoryId = null) {
