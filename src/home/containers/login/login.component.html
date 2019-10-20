@@ -1,0 +1,50 @@
+<div class="box">
+    <div class="container-fluid">
+        <div class="row pt-2">
+            <div class="col-4"><a routerLink="/"><img src="assets/images/logo.png" alt="" height="40px" /></a></div>
+            <div class="col-4"></div>
+            <div class="col-4"></div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <img src="assets/images/hoteldesk.jpg" alt="" height="420px" />
+            </div>
+            <div class="col-md-6">
+                <h2>Welcome back :) </h2>
+                <div class="text">To connect with us please login with your phone number and password <i
+                        class="fa fa-bell-o" aria-hidden="true"></i></div>
+                <div class="login-form">
+                    <div class="alert alert-danger" role="alert" *ngIf="errorMessage.length > 0">
+                        {{ errorMessage }}
+                    </div>
+                    <form [formGroup]="form" (ngSubmit)="submit()">
+                        <div class="fieldset">
+                            <input placeholder="Phonenumber" type="text" maxlength="11" formControlName="phoneNumber" />
+                            <small class="text-danger"
+                                *ngIf="form.controls.phoneNumber.errors && form.controls.phoneNumber.touched">
+                                <div [hidden]="!form.controls['phoneNumber'].errors.required">Phone number required
+                                </div>
+                                <div [hidden]="!form.controls['phoneNumber'].errors.pattern"> Phone number format
+                                    01934953023 </div>
+                            </small>
+                        </div>
+                        <div class="fieldset">
+                            <input placeholder="Password" type="password" formControlName="password" />
+                        </div>
+                        <button class="button btn-login" type="submit">
+                            Login Now
+                        </button>
+                        <a class="button btn-register" routerLink="/register">
+                            Create Account
+                        </a>
+                    </form>
+                    <p class="pt-2">
+                        Forgot your password?
+                        <a routerLink="/password-reset" style="cursor: pointer;"> <strong> Reset it</strong></a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

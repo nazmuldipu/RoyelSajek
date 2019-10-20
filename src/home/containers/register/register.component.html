@@ -1,0 +1,65 @@
+<div class="box">
+    <div class="container-fluid">
+        <div class="row pt-2">
+            <div class="col-4"><a routerLink="/"><img src="assets/images/logo.png" alt="" height="40px" /></a></div>
+            <div class="col-4"></div>
+            <div class="col-4"></div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <img src="assets/images/hoteldesk.jpg" alt="" height="420px" />
+            </div>
+            <div class="col-md-6">
+                <h2>Welcome</h2>
+                <div class="text">To register with us please provide following informations <i class="fa fa-bell-o"
+                        aria-hidden="true"></i></div>
+                <div class="login-form">
+                    <div class="alert alert-danger" role="alert" *ngIf="errorMessage.length > 0">
+                        {{ errorMessage }}
+                    </div>
+                    <form [formGroup]="form" (ngSubmit)="submit()">
+                        <div class="fieldset">
+                            <input placeholder="Name" type="text" formControlName="name" />
+                        </div>
+                        <div class="fieldset">
+                            <input placeholder="Email Address" type="email" formControlName="email" />
+                            <small class="text-danger"
+                                *ngIf="form.controls.email.errors && form.controls.email.touched">
+                                <div [hidden]="!form.controls['email'].errors.required">
+                                    Email address required
+                                </div>
+                                <div [hidden]="!form.controls['email'].errors.email">
+                                    Please insert a valid email address
+                                </div>
+                            </small>
+                        </div>
+                        <div class="fieldset">
+                            <input placeholder="Phonenumber" type="text" maxlength="11" formControlName="phoneNumber" />
+                            <small class="text-danger"
+                                *ngIf="form.controls.phoneNumber.errors && form.controls.phoneNumber.touched">
+                                <div [hidden]="!form.controls['phoneNumber'].errors.required">Phone number required
+                                </div>
+                                <div [hidden]="!form.controls['phoneNumber'].errors.pattern"> Phone number format
+                                    01934953023 </div>
+                            </small>
+                        </div>
+                        <div class="fieldset">
+                            <input placeholder="Password" type="password" formControlName="password" />
+                        </div>
+                        <button class="button btn-login" type="submit">
+                            Register Now
+                        </button>
+                        <a class="button btn-register" routerLink="/login">
+                            Login to you Account
+                        </a>
+                    </form>
+                    <p class="pt-2">
+                            By creating an account, you agree to our 
+                        <a routerLink="/terms" style="cursor: pointer;"> <strong> terms & conditions</strong></a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

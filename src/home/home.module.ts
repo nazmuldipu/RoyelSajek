@@ -11,8 +11,12 @@ import { FooterComponent } from './components/footer/footer.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { ContactsComponent } from './containers/contacts/contacts.component';
+import { LoginComponent } from './containers/login/login.component';
+import { RegisterComponent } from './containers/register/register.component';
 
 export const ROUTES: Routes = [
+  {path:'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
   {
     path: '',
     component: HomeComponent,
@@ -38,7 +42,9 @@ export const ROUTES: Routes = [
     FooterComponent,
     GalleryComponent,
     CarouselComponent,
-    ContactsComponent
+    ContactsComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [SharedModule, NgxGalleryModule, RouterModule.forChild(ROUTES)]
 })

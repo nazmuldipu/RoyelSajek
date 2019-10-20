@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { ServiceModule } from 'src/service/service.module';
 import { StaticDataSource } from 'src/shared/models/static.datasource';
+import { CookieModule } from 'ngx-cookie';
 
 import { AppComponent } from './app.component';
 
@@ -27,7 +28,7 @@ export const ROUTES: Routes = [
     HttpClientModule,
     ServiceModule,
     BrowserAnimationsModule,
-    // CookieModule.forRoot(),
+    CookieModule.forRoot(),
     RouterModule.forRoot(ROUTES)
   ],
   providers: [StaticDataSource],
