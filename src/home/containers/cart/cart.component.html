@@ -1,0 +1,171 @@
+<div class="container">
+    <div class="d-flex justify-content-between">
+        <h2>My cart</h2>
+        <a routerLink="/" class="mx-2">
+            <i class="fa fa-home"></i> Go back to home
+        </a>
+    </div>
+</div>
+
+<div class="container mb-4" *ngIf="
+      cart?.subBookingList != null && cart.subBookingList.length > 0;
+      else showEmpty
+    ">
+    <div class="row">
+        <div class="col-md-4 border my-4 p-2">
+            <h3>Customer Info</h3>
+            <table>
+                <tr>
+                    <th>Name :</th>
+                    <th>{{ cart?.user?.name }}</th>
+                </tr>
+                <tr>
+                    <th>Phone :</th>
+                    <th>{{ cart?.user?.phoneNumber }}</th>
+                </tr>
+                <tr>
+                    <th>Email :</th>
+                    <th>{{ cart?.user?.email }}</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-responsive-sm border">
+            <thead>
+                <tr>
+                    <th>Hotel</th>
+                    <th>Date</th>
+                    <th>Room number</th>
+                    <th class="text-right">Per night</th>
+                    <th class="text-right">Discount</th>
+                    <th class="text-right">Payable</th>
+                    <th class="text-right"></th>
+                </tr>
+            </thead>
+            <tbody *ngIf="
+            cart != null &&
+            cart.subBookingList != null &&
+            cart.subBookingList.length > 0
+          ">
+                <tr *ngFor="let subBook of cart.subBookingList; index as i">
+                    <td>{{ subBook?.room.category?.hotel?.name }}</td>
+                    <td>{{ subBook?.date | date: 'd MMM,yy' }}</td>
+                    <td>
+                        {{ subBook?.room?.roomNumber }} [{{ subBook?.room.category?.name }}]
+                    </td>
+                    <td class="text-right">{{ subBook?.room?.price }}BDT</td>
+                    <td class="text-right">{{ subBook?.discount }}BDT</td>
+                    <td class="text-right">{{ subBook?.payablePrice }}BDT</td>
+                    <td>
+                        <button class="btn btn-sm btn-danger" (click)="removeRoom(i)">
+                            <i class="fa fa-trash-o"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="5" class="text-right">Sub total</th>
+                    <th class="text-right">{{ cart?.subtotal }}BDT</th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th colspan="5" class="text-right">Discount</th>
+                    <th class="text-right">- {{ cart?.totalDiscount }}BDT</th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th colspan="5" class="text-right">Promotional Discount</th>
+                    <th class="text-right">- {{ cart?.promotionDiscount }}BDT</th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th colspan="5" class="text-right">Vat and Servie charge</th>
+                    <th class="text-right">+ {{ cart?.totalVatService }}BDT</th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th colspan="5" class="text-right">Total payable</th>
+                    <th class="text-right">{{ cart?.total }}BDT</th>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="d-flex flex-row-reverse bd-highlight"
+        *ngIf="cart?.subBookingList != null && cart.subBookingList.length > 0">
+        <button *ngIf="!paymentUrl && !loading" class="btn btn-sm btn-success mx-2" (click)="onConfirmBooking()">
+            <i class="fa fa-check"></i> Confirm booking
+        </button>
+        <a *ngIf="paymentUrl" [href]="paymentUrl" class="btn btn-sm btn-primary mx-2">
+            <i class="fa fa-credit-card"></i> Make payment
+        </a>
+        <loading *ngIf="loading"></loading>
+    </div>
+</div>
+<div class="container">
+    <div class="alert alert-warning" *ngIf="showOfflineMessage" role="alert">
+        Your booking contains one or more offline hotel. Hotelswave team will confirm your room first. This process
+        could take upto
+        1 working day. After confirming your booking hotelswave team will communicate with you through email or phone.
+        Thank
+        you for your patient.
+        <br />
+        <br /> -Kind regard
+        <br /> Hotelswave Team
+    </div>
+</div>
+<div class="container pb-5" *ngIf="cart?.subBookingList != null && cart.subBookingList.length > 0">
+    <div class="row">Payment methods</div>
+    <div class="row">
+        <div class="col p-1">
+            <img src="assets/images/payments/visa-sq.png" height="55" width="55" />
+        </div>
+        <div class="col p-1">
+            <img src="assets/images/payments/masterc-sq.png" height="55" width="55" />
+        </div>
+        <div class="col p-1">
+            <img src="assets/images/payments/amex-sq.png" height="55" width="55" />
+        </div>
+        <div class="col p-1">
+            <img src="assets/images/payments/dbbl-nexus-sq.png" height="55" width="55" />
+        </div>
+        <div class="col p-1">
+            <img src="assets/images/payments/qcash-sq.png" height="55" width="55" />
+        </div>
+        <div class="col p-1">
+            <img src="assets/images/payments/fastcash-sq.png" height="55" width="55" />
+        </div>
+        <div class="col p-1">
+            <img src="assets/images/payments/bkash-sq.png" height="55" width="55" />
+        </div>
+        <div class="col p-1">
+            <img src="assets/images/payments/dbbl_mobile-sq.png" height="55" width="55" />
+        </div>
+        <div class="col p-1">
+            <img src="assets/images/payments/mcash-sq.png" height="55" width="55" />
+        </div>
+        <div class="col p-1">
+            <img src="assets/images/payments/ab_direct-sq.png" height="55" width="55" />
+        </div>
+        <div class="col p-1">
+            <img src="assets/images/payments/city-sq.png" height="55" width="55" />
+        </div>
+        <div class="col p-1">
+            <img src="assets/images/payments/islamibank-sq.png" height="55" width="55" />
+        </div>
+        <div class="col p-1">
+            <img src="assets/images/payments/mtb-sq.png" height="55" width="55" />
+        </div>
+        <div class="col p-1">
+            <img src="assets/images/payments/bankasia-sq.png" height="55" width="55" />
+        </div>
+    </div>
+</div>
+<ng-template #showEmpty>
+    <div class="container text-center">
+        <h3>
+            <i class="fa fa-frown-o"></i> Your cart is empty</h3>
+    </div>
+</ng-template>

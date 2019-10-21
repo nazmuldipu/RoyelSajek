@@ -159,6 +159,24 @@ export class DetailsComponent implements OnInit {
 
   onRoomBooking(roomId: number) {
     console.log(this.getCheckinDate(), this.getCheckoutDate(), roomId);
+    if (this.authService.isAuthenticated()) {
+      this.bookingService
+        .addToCart(
+          this.authService.getUserId(),
+          roomId,
+          this.getCheckinDate(),
+          this.getCheckoutDate()
+        )
+        .subscribe(data => {
+          this.authService.getUserCart(this.authService.getUserId());
+          this.goBack();
+        });
+    } else {
+      console.log(this.router.url);
+      this.router.navigate(['/login'], {
+        queryParams: { returnUrl: this.router.url }
+      });
+    }
   }
 
   goBack() {

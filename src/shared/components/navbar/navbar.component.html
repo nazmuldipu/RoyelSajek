@@ -54,45 +54,56 @@
     <a class="btn search-button btn-light" (click)="logout()" *ngIf="auth.isAuthenticated()">
       <img class="navbar-brand-img" src="/assets/svgs/logout.svg" alt="Logout" />
       <span class="tooltiptext">Logout</span>
-    </a>
-    <!-- <button class="btn search-button btn-light">
-      <img class="navbar-brand-img" src="/assets/svgs/login.svg" alt="Login" />
-    </button> -->
-    <!-- <form class="form-inline my-2 my-lg-0">
-      <input
-        class="form-control mr-sm-2"
-        type="text"
-        placeholder="Search"
-        aria-label="Search"
-      />
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">
-        Search
-      </button>
-    </form> -->
+    </a>    
   </div>
 </nav>
-<!-- <div class="container-fluid nav">
-  <div class="nav-logo">
-    <img class="nav-logo-img" src="assets/images/logo.png" alt="logo" />
+<a *ngIf="auth.isAuthenticated()" class="float" [ngClass]="{
+  'float-sm': smallCart,
+  'float-lg': !smallCart,
+  'float-fixed': fixed
+}" [ngStyle]="getMyStyles()">
+<div *ngIf="!smallCart; else showSmall">
+  <div class="d-flex justify-content-between p-2">
+    <i class="fa fa-shopping-cart"></i>
+    <h5>Your cart</h5>
+    <i class="fa fa-minus" (click)="onHideClick()" style="cursor: pointer;">
+    </i>
   </div>
-
-  <ul class="nav d-flex align-items-center">
-    <li class="nav-item">
-      <a class="nav-link active" href="#">Active</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"
-        >Disabled</a
-      >
-    </li>
-  </ul>
-
-  abcd
-</div> -->
+  <table class="table cart-table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Room. no</th>
+        <th class="text-right">Payable</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="
+          let subBook of (bookingService.cart$ | async).subBookingList;
+          index as i
+        ">
+        <td>{{ subBook?.date | date: 'd MMM,yy' }}</td>
+        <td>{{ subBook?.room?.roomNumber }}</td>
+        <td class="text-right">{{ subBook?.payablePrice }}৳</td>
+      </tr>
+      <tr>
+        <td colspan="2" class="text-right">Total</td>
+        <td class="text-right">
+          {{ (bookingService.cart$ | async).total }}৳
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-end">
+    <a class="btn btn-sm btn-warning" routerLink="/cart">
+      Go to cart
+    </a>
+  </div>
+</div>
+<ng-template #showSmall>
+  <span (click)="onCartClick()">
+    <i class="fa fa-shopping-cart"></i>
+    {{ (bookingService.cart$ | async)?.total > 0 ? '| ' + (bookingService.cart$ | async)?.total : '' }}
+  </span>
+</ng-template>
+</a>

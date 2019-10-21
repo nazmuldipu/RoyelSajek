@@ -30,11 +30,28 @@ export class BookingService {
     return this.http.post<Booking>(url, { responseType: 'json' });
   }
 
+  //When user want to remove a room from cart
+  removeFromCart( userId: number, roomId: number, date: string ): Observable<Booking> {
+    const access_token = this._cookieService.get('access_token')
+    const param = `roomId=${roomId}&date=${date}&access_token=${access_token}`;
+    const url = `${this.baseUrl}${this.serviceUrl}/cart/remove/${userId}?${param}`;
+    return this.http.put<Booking>(url, { responseType: 'json' });
+  }
+
   // Get my booking cart. this method should call just after user login
   getMyCart(userId: number): Observable<Booking> {
     const access_token = this._cookieService.get('access_token')
     const param = `?access_token=${access_token}`;
     const url = `${this.baseUrl}${this.serviceUrl}/myCart/${userId}${param}`;
+    console.log(url);
     return this.http.get<Booking>(url, { responseType: 'json' });
+  }
+
+  // Confirm booking
+  confirmUserBooking(userId: number) : Observable<any>{
+    const access_token = this._cookieService.get('access_token')
+    const param = `?access_token=${access_token}`;
+    const url = `${this.baseUrl}${this.serviceUrl}/checkout/${userId}${param}`;
+    return this.http.get<Booking>(url, { responseType: 'json' });    
   }
 }

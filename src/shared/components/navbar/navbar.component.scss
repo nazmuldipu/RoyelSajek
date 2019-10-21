@@ -76,3 +76,30 @@
     display: inline-block;
   }
 }
+
+.float {
+  text-decoration: none;
+  float: right;
+  font-size: 14px;
+  position: fixed;
+  right: 0;
+  top: 85px;
+  color: #fff !important;
+  // border-radius: 0 0 0 20px;
+  text-align: center;
+  z-index: 99;
+  &-sm {
+    cursor: pointer;
+    padding: 5px 10px;
+    background-color: #ff1d4d;
+  }
+  &-lg {
+    width: 300px;
+    background-color: #3fd0d4;
+  }
+}
+
+th, td {
+  padding: 2px;
+  font-weight: 200;
+}

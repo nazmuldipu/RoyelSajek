@@ -121,7 +121,7 @@ export class AuthService {
     this._cookieService.putObject('user', this.user, { expires: exDate });
     this._cookieService.putObject('authorities', this.authorities, { expires: exDate });
     let returnUrl = localStorage.getItem('returnUrl');
-    // this.getUserCart(data.id);
+    this.getUserCart(data.id);
     this.router.navigateByUrl(returnUrl);
   }
 
