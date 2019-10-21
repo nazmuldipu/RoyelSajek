@@ -158,7 +158,6 @@ export class DetailsComponent implements OnInit {
   }
 
   onRoomBooking(roomId: number) {
-    console.log(this.getCheckinDate(), this.getCheckoutDate(), roomId);
     if (this.authService.isAuthenticated()) {
       this.bookingService
         .addToCart(

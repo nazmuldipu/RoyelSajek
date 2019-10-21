@@ -6,6 +6,8 @@ import { RoomService } from 'src/service/room.service';
 import { Hotel } from 'src/shared/models/hotel.model';
 import { RoomCategory } from 'src/shared/models/room.category';
 import { Room } from 'src/shared/models/room.model';
+import { AuthService } from 'src/service/auth.service';
+import { BookingService } from 'src/service/booking.service';
 
 @Component({
   selector: 'app-index',
@@ -25,7 +27,8 @@ export class IndexComponent implements OnInit {
   totalNonAcRoom = 0;
 
   constructor(private router: Router, private hotelService: HotelService,
-    private roomService: RoomService, private categoryService: CategoryService) { }
+    private roomService: RoomService, private categoryService: CategoryService,
+    private authService: AuthService, private bookingService: BookingService) { }
 
   ngOnInit() {
     this.getHotelInfo();
@@ -153,7 +156,23 @@ export class IndexComponent implements OnInit {
   }
 
   onRoomBooking(roomId: number) {
-    console.log(this.getCheckinDate(), this.getCheckoutDate(), roomId);
+    if (this.authService.isAuthenticated()) {
+      this.bookingService
+        .addToCart(
+          this.authService.getUserId(),
+          roomId,
+          this.getCheckinDate(),
+          this.getCheckoutDate()
+        )
+        .subscribe(data => {
+          this.authService.getUserCart(this.authService.getUserId());
+        });
+    } else {
+      console.log(this.router.url);
+      this.router.navigate(['/login'], {
+        queryParams: { returnUrl: this.router.url }
+      });
+    }
   }
 
   getCheckinDate(): string {
