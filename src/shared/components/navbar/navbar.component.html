@@ -47,8 +47,13 @@
     <a class="btn btn-success book-button" routerLink="/rooms">
       <img class="navbar-brand-img" src="assets/images/hotel-bell.svg" alt="logo" /> &nbsp; Book Now
     </a>
-    <a class="btn search-button btn-light" routerLink="/login">
+    <a class="btn search-button btn-light" routerLink="/login" *ngIf="!auth.isAuthenticated()">
       <img class="navbar-brand-img" src="/assets/svgs/login.svg" alt="Login" />
+      <span class="tooltiptext">Login</span>
+    </a>
+    <a class="btn search-button btn-light" (click)="logout()" *ngIf="auth.isAuthenticated()">
+      <img class="navbar-brand-img" src="/assets/svgs/logout.svg" alt="Logout" />
+      <span class="tooltiptext">Logout</span>
     </a>
     <!-- <button class="btn search-button btn-light">
       <img class="navbar-brand-img" src="/assets/svgs/login.svg" alt="Login" />

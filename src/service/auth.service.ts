@@ -15,10 +15,26 @@ export class AuthService {
   public user: User;
   authorities = [];
   errorMessage = '';
+  urlFlag = true;
 
   constructor(private http: HttpClient, private activeRoute: ActivatedRoute, 
     private router: Router, private _cookieService:CookieService) {
     this.baseUrl = `${environment.PROTOCOL}://${environment.SERVER}${environment.PORT}/`;
+
+    if (this.isAuthenticated()) {
+      this.user = JSON.parse(_cookieService.get('user'));
+      this.authorities = JSON.parse(_cookieService.get('authorities'));
+    }
+  }
+
+  isAuthenticated(): boolean {
+    const access_token = this._cookieService.get('access_token');
+    const refresh_token = this._cookieService.get('refresh_token');
+    if (!access_token && !!refresh_token && this.urlFlag) {
+      this.obtainAccessTokenByRefreshToken();
+      return false;
+    }
+    return !!access_token;
   }
 
   authenticate(username: string, password: string): Observable<any> {
@@ -38,6 +54,41 @@ export class AuthService {
     return this.http.post(url, { responseType: 'json' });
   }
 
+  async obtainAccessTokenByRefreshToken() {
+    /*
+     * Using urlFlag as a semaphorse for exclusive execution.
+     * whenever access token expires all method who are using access_token will
+     * hit this method. but this will execute only once;
+     */
+    if (this.urlFlag) {
+      this.urlFlag = false;
+      // console.log('obtaining access token by refresh token');
+      const params = new URLSearchParams();
+      params.append('grant_type', 'refresh_token');
+      params.append('refresh_token', this._cookieService.get('refresh_token'));
+      params.append('client_id', environment.client_id);
+      params.append('client_secret', environment.client_secret);
+
+      const url = this.baseUrl + 'oauth/token?' + params.toString();
+      await this.http
+        .get(url, { responseType: 'json' })
+        .subscribe(
+          data => {
+            this.saveToken(data, '');
+
+            window.location.reload();
+            // console.lo
+            this.urlFlag = true;
+          },
+          error => {
+            this._cookieService.removeAll();
+            this.router.navigateByUrl('/login');
+            console.log('obst error', error);
+          }
+        );
+    }
+  }
+
   saveToken(data, url) {
     const value = {
       name: data.name,
@@ -45,6 +96,7 @@ export class AuthService {
       id: data.id,
       phoneNumber: data.phone
     } as User;
+
     // Save username and roles
     this.user = value;
 
@@ -63,5 +115,13 @@ export class AuthService {
     let returnUrl = localStorage.getItem('returnUrl');
     // this.getUserCart(data.id);
     this.router.navigateByUrl(returnUrl);
+  }
+
+  clear() {
+    this._cookieService.removeAll();
+    localStorage.clear();
+    this.user = null;
+    this.authorities = [];
+    this.router.navigateByUrl('/login');
   }
 }
