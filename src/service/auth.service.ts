@@ -1,10 +1,12 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { CookieService } from 'ngx-cookie';
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
+import { Booking } from 'src/shared/models/booking.model';
 import { User } from 'src/shared/models/user.model';
-import { CookieService } from 'ngx-cookie';
+import { BookingService } from './booking.service';
 
 @Injectable({
   providedIn: "root"
@@ -12,19 +14,25 @@ import { CookieService } from 'ngx-cookie';
 export class AuthService {
   hotelId: number;
   baseUrl: string;
+  
   public user: User;
   authorities = [];
   errorMessage = '';
   urlFlag = true;
 
   constructor(private http: HttpClient, private activeRoute: ActivatedRoute, 
-    private router: Router, private _cookieService:CookieService) {
+    private router: Router, private _cookieService:CookieService,
+    private bookingService: BookingService) {
     this.baseUrl = `${environment.PROTOCOL}://${environment.SERVER}${environment.PORT}/`;
 
     if (this.isAuthenticated()) {
       this.user = JSON.parse(_cookieService.get('user'));
       this.authorities = JSON.parse(_cookieService.get('authorities'));
     }
+  }
+
+  getUserId(): number {
+    return this.user.id;
   }
 
   isAuthenticated(): boolean {
@@ -115,6 +123,13 @@ export class AuthService {
     let returnUrl = localStorage.getItem('returnUrl');
     // this.getUserCart(data.id);
     this.router.navigateByUrl(returnUrl);
+  }
+
+  async getUserCart(userId: number) {
+    await this.bookingService.getMyCart(userId).subscribe(data => {
+      this.bookingService.cart = data as Booking;
+      this.bookingService._cartSource.next(data);
+    });
   }
 
   clear() {

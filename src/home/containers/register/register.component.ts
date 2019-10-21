@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UserService } from 'src/service/user.service';
 
 @Component({
   selector: "app-register",
@@ -10,7 +11,7 @@ export class RegisterComponent implements OnInit {
   form: FormGroup;
   errorMessage: string = "";
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private userService: UserService) {}
 
   ngOnInit() {
     this.createForm();
@@ -35,6 +36,7 @@ export class RegisterComponent implements OnInit {
     if (this.form.valid) {
       this.errorMessage = "";
       console.log(this.form.value);
+      this.userService.userRegistration(this.form.value);
     } else {
       this.errorMessage = "Form data missing";
     }

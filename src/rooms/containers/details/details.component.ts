@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { RoomService } from 'src/service/room.service';
 import { HotelService } from 'src/service/hotel.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Room } from 'src/shared/models/room.model';
 import { CategoryService } from 'src/service/category.service';
+import { AuthService } from 'src/service/auth.service';
+import { BookingService } from 'src/service/booking.service';
 
 @Component({
   selector: 'app-details',
@@ -23,7 +25,8 @@ export class DetailsComponent implements OnInit {
   discount = 0;
 
   constructor(private roomService: RoomService, private hotelService: HotelService,
-    private categoryService: CategoryService, private activeRoute: ActivatedRoute) {
+    private categoryService: CategoryService, private activeRoute: ActivatedRoute, private router: Router,
+    private authService: AuthService, private bookingService: BookingService) {
     this.id = activeRoute.snapshot.paramMap.get('id');
   }
 
@@ -131,8 +134,36 @@ export class DetailsComponent implements OnInit {
         }
       });
   }
+
+  async bookRoom(roomId: number) {
+    if (this.authService.isAuthenticated()) {
+      this.bookingService
+        .addToCart(
+          this.authService.getUserId(),
+          roomId,
+          this.getCheckinDate(),
+          this.getCheckoutDate
+        )
+        .subscribe(data => {
+          this.authService.getUserCart(this.authService.getUserId());
+          this.goBack();
+        });
+    } else {
+      console.log(this.router.url);
+      this.router.navigate(['/login'], {
+        queryParams: { returnUrl: this.router.url }
+      });
+    }
+    console.log('book room ', roomId);
+  }
+
   onRoomBooking(roomId: number) {
     console.log(this.getCheckinDate(), this.getCheckoutDate(), roomId);
+  }
+
+  goBack() {
+    console.log(this.room);
+    this.router.navigate(['/hotels', this.room.hotel.id]);
   }
 
   getCheckinDate(): string {
