@@ -8,11 +8,12 @@ import { Daterangepicker } from 'ng2-daterangepicker';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TitleComponent } from './components/title/title.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
-  declarations: [TitleComponent, NavbarComponent, LoadingComponent,
+  declarations: [TitleComponent, NavbarComponent, LoadingComponent, FooterComponent
   ],
   imports: [CommonModule, Daterangepicker, FormsModule, ReactiveFormsModule, RouterModule, NgbModule, NgbModule.forRoot()],
-  exports: [CommonModule, Daterangepicker, NgbModule, FormsModule, ReactiveFormsModule, NavbarComponent, TitleComponent, LoadingComponent]
+  exports: [CommonModule, Daterangepicker, NgbModule, FormsModule, ReactiveFormsModule, NavbarComponent, TitleComponent, LoadingComponent, FooterComponent]
 })
 export class SharedModule { }

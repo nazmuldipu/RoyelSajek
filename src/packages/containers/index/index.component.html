@@ -1,0 +1,268 @@
+<navbar></navbar>
+<div class="package-details" *ngIf="package">
+  <div class="container" style="z-index: 10;">
+    <div class="row">
+      <div class="col-md-3 mt-4">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <h3>Package list</h3>
+            <small> Select a package from below list </small>
+          </li>
+          <li class="list-group-item" *ngFor="let pac of packages" [ngClass]="{ active: pac.id == package?.id }"
+            style="cursor: pointer;" (click)="onPackage(pac.id)"> {{pac.title}} </li>
+        </ul>
+      </div>
+
+      <div class="col-md-9">
+        <div class="row">
+
+          <div class="col-12">
+            <div class="package-details-header">
+              {{ package?.title }}
+            </div>
+          </div>
+
+          <div class="col-12 p-0">
+            <img *ngIf="package?.imagePaths?.length" class="package-details-head-image" [src]="package.imagePaths[0]"
+              alt="package image 1" />
+          </div>
+
+          <div class="col-12 p-0 bg-secondary">
+            <nav class="navbar navbar-expand-md p-0">
+              <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item" [ngClass]="{ active: tab == 'INFORMATION' }" (click)="getTab('INFORMATION')">
+                    <a class="nav-link">
+                      <i class="fa fa-info"></i> INFORMATION
+                    </a>
+                  </li>
+                  <li class="nav-item" [ngClass]="{ active: tab == 'TOUR PLAN' }" (click)="getTab('TOUR PLAN')">
+                    <a class="nav-link">
+                      <i class="fa fa-calendar-o"></i> &nbsp; TOUR PLAN
+                    </a>
+                  </li>
+                  <li class="nav-item " [ngClass]="{ active: tab == 'LOCATION' }" (click)="getTab('LOCATION')">
+                    <a class="nav-link">
+                      <i class="fa fa-map-marker"></i> &nbsp; LOCATION
+                    </a>
+                  </li>
+                  <li class="nav-item" [ngClass]="{ active: tab == 'GALLERY' }" (click)="getTab('GALLERY')">
+                    <a class="nav-link">
+                      <i class="fa fa-camera"></i> &nbsp; GALLERY
+                    </a>
+                  </li>
+                  <li class="nav-item" [ngClass]="{ active: tab == 'REVIEWS' }" (click)="getTab('REVIEWS')">
+                    <a class="nav-link">
+                      <i class="fa fa-comments-o"></i> &nbsp; REVIEWS
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+          <div class="col-md-9 pt-4" style="background-color: white; z-index: 20;">
+
+            <div *ngIf="tab == 'INFORMATION'" class="information">
+              <div class="information-head">
+                <h3>{{ package.title }}</h3>
+                <span class="information-head-price">BDT {{ package.price }}</span>
+                / per person
+              </div>
+              <div class="information-description">
+                {{ package.description }}
+              </div>
+              <div class="information-line">
+                <div class="row">
+                  <div class="col-4">
+                    <strong>Destination</strong>
+                  </div>
+                  <div class="col-8">
+                    <span *ngFor="let des of package.destinations">
+                      {{ des }},
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="information-line" *ngIf="package.departurePlace">
+                <div class="row">
+                  <div class="col-4">
+                    <strong>Departure</strong>
+                  </div>
+                  <div class="col-8">
+                    {{ package.departurePlace }}
+                  </div>
+                </div>
+              </div>
+              <div class="information-line" *ngIf="package.departureDate">
+                <div class="row">
+                  <div class="col-4">
+                    <strong>Departure Date</strong>
+                  </div>
+                  <div class="col-8">
+                    {{ package.departureDate }}
+                  </div>
+                </div>
+              </div>
+              <div class="information-line" *ngIf="package.departureTime">
+                <div class="row">
+                  <div class="col-4">
+                    <strong>Departure Time</strong>
+                  </div>
+                  <div class="col-8">
+                    Approximately {{ package.departureTime }}
+                  </div>
+                </div>
+              </div>
+              <div class="information-line" *ngIf="package.returnDate">
+                <div class="row">
+                  <div class="col-4">
+                    <strong>Return Date</strong>
+                  </div>
+                  <div class="col-8">
+                    {{ package.returnDate }}
+                  </div>
+                </div>
+              </div>
+              <div class="information-line" *ngIf="package.returnTime">
+                <div class="row">
+                  <div class="col-4">
+                    <strong>Return Time</strong>
+                  </div>
+                  <div class="col-8">Approximately {{ package.returnTime }}</div>
+                </div>
+              </div>
+              <div class="information-line" *ngIf="package.minimumPerson">
+                <div class="row">
+                  <div class="col-4">
+                    <strong>Minimum person</strong>
+                  </div>
+                  <div class="col-8">{{ package.minimumPerson }} person</div>
+                </div>
+              </div>
+              <div class="information-line">
+                <div class="row">
+                  <div class="col-4">
+                    <strong>Included</strong>
+                  </div>
+                  <div class="col-8">
+                    <div class="row">
+                      <div class="col-6 py-2" *ngFor="let inc of package.include">
+                        <i class="fa fa-check-circle-o"></i> {{ inc }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="information-line">
+                <div class="row">
+                  <div class="col-4">
+                    <strong>Not Included</strong>
+                  </div>
+                  <div class="col-8">
+                    <div class="row">
+                      <div class="col-6 py-2" *ngFor="let ext of package.exclude">
+                        <i class="fa fa-times-circle-o"></i> {{ ext }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="information-head">
+                <h3>Other packages</h3>
+              </div>
+            </div>
+
+            <div *ngIf="tab == 'TOUR PLAN'">
+              <div class="plan-title">
+                <h3>Tour Plan</h3>
+              </div>
+              <div class="row pl-3 pb-5" *ngFor="let pPlan of package.packagePlans; let i = index">
+                <div class="col-auto" class="plan-line">
+                  <span class="plan-index">{{ i + 1 }} </span>
+                </div>
+                <div class="col">
+                  <div class="plan-head">{{ pPlan.head }}</div>
+                  <div class="plan-description">{{ pPlan.description }}</div>
+                  <div class="plan-point" *ngFor="let p of pPlan.points">
+                    {{ p }}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="tab == 'LOCATION'">
+              <div class="plan-title">
+                <h3>Tour Location</h3>
+                <iframe width="100%" height="450" frameborder="0" style="border:0"
+                  [src]="sanitizer.bypassSecurityTrustResourceUrl(package.maplink)" allowfullscreen></iframe>
+              </div>
+
+            </div>
+            <div *ngIf="tab == 'GALLERY'">
+              <div class="plan-title">
+                <h3>Gallery</h3>
+              </div>
+              <div class="row">
+                <div class="col-6 p-0 py-1" *ngFor="
+                          let imagePath of (package?.imagePaths | slice: 1);
+                          let index = index;
+                          let odd = odd;
+                          let even = even
+                        " [ngClass]="{ 'pl-md-1': odd, 'pr-md-1': even }">
+                  <img class="package-details-gallery-image" [src]="imagePath" alt="room image 1" />
+                </div>
+              </div>
+            </div>
+            <div *ngIf="tab == 'REVIEWS'">
+              <div class="plan-title">
+                <h3>Reviews Scores and Score Breakdown</h3>
+                <div class="row">
+                  <div class="col-md-3">
+                    <h1 class="text-center mt-5 pt-5">
+                      {{ package?.packageRatings?.average }}
+                    </h1>
+                    <div class="text-center" *ngIf="package?.packageRatings?.average">
+                      Average
+                    </div>
+                  </div>
+                  <div class="col-md-9">
+                    <p>
+                      Rating
+                      <ngb-progressbar type="info" [value]="package?.packageRatings?.rating"></ngb-progressbar>
+                    </p>
+                    <p>
+                      Comfort
+                      <ngb-progressbar type="info" [value]="package?.packageRatings?.comfort"></ngb-progressbar>
+                    </p>
+                    <p>
+                      Food
+                      <ngb-progressbar type="info" [value]="package?.packageRatings?.food"></ngb-progressbar>
+                    </p>
+                    <p>
+                      Hospitality
+                      <ngb-progressbar type="info" [value]="package?.packageRatings?.hospitality"></ngb-progressbar>
+                    </p>
+                    <p>
+                      Hygiene
+                      <ngb-progressbar type="info" [value]="package?.packageRatings?.hygiene"></ngb-progressbar>
+                    </p>
+                    <p>
+                      Reception
+                      <ngb-progressbar type="info" [value]="package?.packageRatings?.reception"></ngb-progressbar>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <!-- <package-form [packageId]="package.id" (create)="onCreate($event)"></package-form> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<footer></footer>

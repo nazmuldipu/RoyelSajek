@@ -16,6 +16,10 @@ export const ROUTES: Routes = [
     loadChildren: '../rooms/rooms.module#RoomsModule'
   },
   {
+    path: 'packages',
+    loadChildren: '../packages/packages.module#PackagesModule'
+  },
+  {
     path: '',
     loadChildren: '../home/home.module#HomeModule'
   }

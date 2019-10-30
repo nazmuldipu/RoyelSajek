@@ -14,7 +14,7 @@
   </p>
 
   <div class="container">
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-12 d-none d-md-block">
         <nav class="navbar navbar-expand-md">
           <div class="collapse navbar-collapse" id="navbarsExampleDefault">
@@ -95,9 +95,9 @@
           </div>
         </nav>
       </div>
-    </div>
-    <div class="row pt-5">
-      <div class="col-md-4" *ngFor="let package of packages">
+    </div> -->
+    <div class="row pt-2">
+      <div class="col-md-6" *ngFor="let package of packages">
         <div class="packages-card" *ngIf="package.imagePaths?.length">
           <img
             class="packages-card-image"
@@ -129,10 +129,10 @@
       </div>
     </div>
 
-    <div class="d-flex justify-content-end py-3">
+    <!-- <div class="d-flex justify-content-end py-3">
       <a class="btn btn btn-primary" routerLink="/packages/create-own-package">
         Create Your Own Package
       </a>
-    </div>
+    </div> -->
   </div>
 </div>

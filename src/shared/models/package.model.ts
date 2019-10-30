@@ -29,6 +29,7 @@ export interface Package {
   spots: string[];
   category: string;
   lastBookingDate: any;
+  maplink: string;
 }
 
 export interface PackagePlan {
