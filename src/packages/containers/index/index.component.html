@@ -1,5 +1,5 @@
 <navbar></navbar>
-<div class="package-details" *ngIf="package">
+<div class="package-details">
   <div class="container" style="z-index: 10;">
     <div class="row">
       <div class="col-md-3 mt-4">
@@ -13,7 +13,7 @@
         </ul>
       </div>
 
-      <div class="col-md-9">
+      <div class="col-md-9" *ngIf="package">
         <div class="row">
 
           <div class="col-12">

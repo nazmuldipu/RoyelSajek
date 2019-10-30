@@ -24,7 +24,6 @@ export class IndexComponent implements OnInit {
   }
 
   ngOnInit() {
-    window.scrollTo(0, 0);
     this.dataSource.getProducts().subscribe(data => {
       this.packages = data;
     });
@@ -38,6 +37,7 @@ export class IndexComponent implements OnInit {
   }
 
   onPackage(id){
+    window.scrollTo(0, 0);
     this.id = id;
     this.package = this.packages.find(pac => pac.id == id)
   }
