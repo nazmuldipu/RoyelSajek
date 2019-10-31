@@ -1,64 +1,16 @@
-<!-- <section-title
-  [head]="head"
-  [title]="title"
-  [background]="background"
-></section-title> -->
+<ngb-carousel *ngIf="images">
+  <ng-template ngbSlide>
+    <img class="carousel-image" [src]="images[0]" alt="Random first slide" />
+    <!-- <div class="carousel-caption">
+      <h2>Saint Martin</h2>
+      <p>The blue water & the blue sky meet at the horizon</p>
+    </div> -->
+  </ng-template>
 
-<div class="container-fluid p-0 slider">
-  <div class="row">
-    <div class="col-md-4">
-      <!-- <div class="sliders">
-        <ng-container *ngFor="let slide of img_list; let i = index">
-          <div class="slider" *ngIf="current == i" @slideOutIn>
-            <img
-              class="slide slide-animation nonDraggableImage"
-              [src]="slide"
-            />
-          </div>
-        </ng-container>
-      </div> -->
-    </div>
-    <div class="col-md-8">
-      <div class="sliders">
-        <ng-container *ngFor="let slide of slides; let i = index">
-          <div class="slider" *ngIf="current == i" @slideAnimation>
-            <img
-              class="slide slide-animation nonDraggableImage"
-              [src]="slide.image"
-            />
-          </div>
-        </ng-container>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- <div class="container-fluid p-0 slider">
-  <div [@slideAnimation]="currentIndex">
-    <ng-template ngFor [ngForOf]="slides" let-slide let-i="index">
-      <img
-        class="slide slide-animation nonDraggableImage"
-        *ngIf="isCurrentSlideIndex(i)"
-        (swiperight)="nextSlide()"
-        (swipeleft)="prevSlide()"
-        [src]="slide.image"
-      />
-    </ng-template>
-  </div>
-
-  <button class="arrow prev" (click)="nextSlide()"></button>
-  <button class="arrow next" (click)="prevSlide()"></button>
-  <nav class="nav">
-    <div class="wrapper">
-      <ul class="dots">
-        <li class="dot" *ngFor="let slide of slides; let i = index">
-          <span
-            [ngClass]="{ active: isCurrentSlideIndex(i) }"
-            (click)="setCurrentSlideIndex(i)"
-            >{{ slide.description }}</span
-          >
-        </li>
-      </ul>
-    </div>
-  </nav>
-</div> -->
+  <ng-template ngbSlide>
+    <img class="carousel-image" [src]="images[1]" alt="Random third slide" />
+  </ng-template>
+  <ng-template ngbSlide>
+    <img class="carousel-image" [src]="images[2]" alt="Random third slide" />
+  </ng-template>
+</ngb-carousel>
