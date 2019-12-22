@@ -20,8 +20,14 @@
           <a class="nav-link" routerLink="/contact">Contact us</a>
         </li>
       </ul>
-      <button class="btn btn-sm book-button font-weight-bold">
-        <i class="fa fa-calendar"></i> &nbsp; BOOK ONLINE</button>
+      <a class="btn btn-sm book-button font-weight-bold" routerLink="/rooms">
+        <i class="fa fa-calendar"></i> &nbsp; BOOK ONLINE</a>
+      <a *ngIf="!auth.isAuthenticated()" class="btn btn-sm book-button font-weight-bold" routerLink="/login">
+        <i class="fa fa-sign-in"></i> &nbsp; Login</a>
+      <button *ngIf="auth.isAuthenticated()" class="btn btn-sm book-button font-weight-bold" (click)="logout()">
+        Logout &nbsp;
+        <i class="fa fa-sign-out"></i>
+      </button>
     </div>
   </div>
 </nav>
