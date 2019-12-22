@@ -1,12 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   template: `
-    <navbar></navbar>
+    <navbar [transparent]="transparent"></navbar>
     <router-outlet></router-outlet>
   `
-  // templateUrl: './home.component.html',
-  // styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {}
+export class HomeComponent {
+  transparent = true;
+
+  @HostListener('window:scroll', ['$event'])
+  handleScroll() {
+    const windowScroll = window.pageYOffset;
+    if (windowScroll > 10) {
+      this.transparent = false;
+    } else {
+      this.transparent = true;
+    }
+  }
+}

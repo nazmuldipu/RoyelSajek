@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { AuthService } from 'src/service/auth.service';
 import { BookingService } from 'src/service/booking.service';
 
@@ -7,17 +7,24 @@ import { BookingService } from 'src/service/booking.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnChanges {
   @Input() fixed: boolean;
-  
+  @Input() transparent: boolean;
+
   show = false;
   smallCart = true;
-  
-  constructor(public auth: AuthService, private bookingService: BookingService) {}
+
+  constructor(public auth: AuthService, private bookingService: BookingService) { }
 
   ngOnInit() {
     if (this.auth.isAuthenticated()) {
       this.auth.getUserCart(this.auth.getUserId());
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes && changes.transparent) {
+      console.log("Changed " + this.transparent);
     }
   }
 

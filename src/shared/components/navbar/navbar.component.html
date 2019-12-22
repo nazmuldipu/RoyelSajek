@@ -1,109 +1,78 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top p-0">
-  <a class="navbar-brand" routerLink="/">
-    <img class="navbar-brand-img" src="assets/images/logo.png" alt="logo" />
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#RoyelNavbar" aria-controls="RoyelNavbar"
-    aria-expanded="false" aria-label="Toggle navigation" (click)="toggleCollapse()">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<nav class="navbar navbar-expand-lg fixed-top" [ngClass]="{'bg-light': !transparent}">
+  <div class="container">
+    <a href="#" class="navbar-brand text-uppercase font-weight-bold">
+      <img class="navbar-brand-img" src="assets/images/logo.png" alt="logo" style="width: 100px;" />
+    </a>
+    <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">
+      <i class="fa fa-bars"></i>
+    </button>
 
-  <div class="collapse navbar-collapse" id="RoyelNavbar" [class.show]="show">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" (click)="toggleCollapse()" routerLink="/rooms">Rooms</a>
-      </li>
-      <!-- <li class="nav-item">
-        <div ngbDropdown class="d-inline-block">
-          <a class="nav-link" id="adminCategory" ngbDropdownToggle> Features</a>
-          <div ngbDropdownMenu aria-labelledby="adminCategory">
-            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/category/add">
-              Shop
-            </a>
-            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/category">
-              Reservation
-            </a>
-            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/category">
-              About us
-            </a>
-            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/category">
-              Gallery
-            </a>
-            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/category">
-              404 Page
-            </a>
-            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/category">
-              Coming Soon
-            </a>
-          </div>
-        </div>
-      </li> -->
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/packages">Packages</a>
-      </li> 
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/contact">Contact</a>
-      </li>
-    </ul>
-    <a class="btn btn-success book-button" routerLink="/rooms">
-      <img class="navbar-brand-img" src="assets/images/hotel-bell.svg" alt="logo" /> &nbsp; Book Now
-    </a>
-    <a class="btn search-button btn-light" routerLink="/login" *ngIf="!auth.isAuthenticated()">
-      <img class="navbar-brand-img" src="/assets/svgs/login.svg" alt="Login" />
-      <span class="tooltiptext">Login</span>
-    </a>
-    <a class="btn search-button btn-light" (click)="logout()" *ngIf="auth.isAuthenticated()">
-      <img class="navbar-brand-img" src="/assets/svgs/logout.svg" alt="Logout" />
-      <span class="tooltiptext">Logout</span>
-    </a>    
+    <div id="navbarSupportedContent" class="collapse navbar-collapse">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link text-uppercase font-weight-bold" (click)="toggleCollapse()" routerLink="/rooms">Rooms</a>
+        </li>
+        <li class="nav-item text-uppercase font-weight-bold">
+          <a class="nav-link" routerLink="/packages">Packages</a>
+        </li>
+        <li class="nav-item text-uppercase font-weight-bold">
+          <a class="nav-link" routerLink="/contact">Contact us</a>
+        </li>
+      </ul>
+      <button class="btn btn-sm book-button font-weight-bold">
+        <i class="fa fa-calendar"></i> &nbsp; BOOK ONLINE</button>
+    </div>
   </div>
 </nav>
+
 <a *ngIf="auth.isAuthenticated()" class="float" [ngClass]="{
   'float-sm': smallCart,
   'float-lg': !smallCart,
   'float-fixed': fixed
 }" [ngStyle]="getMyStyles()">
-<div *ngIf="!smallCart; else showSmall">
-  <div class="d-flex justify-content-between p-2">
-    <i class="fa fa-shopping-cart"></i>
-    <h5>Your cart</h5>
-    <i class="fa fa-minus" (click)="onHideClick()" style="cursor: pointer;">
-    </i>
-  </div>
-  <table class="table cart-table">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Room. no</th>
-        <th class="text-right">Payable</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="
+  <div *ngIf="!smallCart; else showSmall">
+    <div class="d-flex justify-content-between p-2">
+      <i class="fa fa-shopping-cart"></i>
+      <h5>Your cart</h5>
+      <i class="fa fa-minus" (click)="onHideClick()" style="cursor: pointer;">
+      </i>
+    </div>
+    <table class="table cart-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Room. no</th>
+          <th class="text-right">Payable</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="
           let subBook of (bookingService.cart$ | async).subBookingList;
           index as i
         ">
-        <td>{{ subBook?.date | date: 'd MMM,yy' }}</td>
-        <td>{{ subBook?.room?.roomNumber }}</td>
-        <td class="text-right">{{ subBook?.payablePrice }}৳</td>
-      </tr>
-      <tr>
-        <td colspan="2" class="text-right">Total</td>
-        <td class="text-right">
-          {{ (bookingService.cart$ | async).total }}৳
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="d-flex justify-content-end">
-    <a class="btn btn-sm btn-warning" routerLink="/cart">
-      Go to cart
-    </a>
+          <td>{{ subBook?.date | date: 'd MMM,yy' }}</td>
+          <td>{{ subBook?.room?.roomNumber }}</td>
+          <td class="text-right">{{ subBook?.payablePrice }}৳</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="text-right">Total</td>
+          <td class="text-right">
+            {{ (bookingService.cart$ | async).total }}৳
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="d-flex justify-content-end">
+      <a class="btn btn-sm btn-warning" routerLink="/cart">
+        Go to cart
+      </a>
+    </div>
   </div>
-</div>
-<ng-template #showSmall>
-  <span (click)="onCartClick()">
-    <i class="fa fa-shopping-cart"></i>
-    {{ (bookingService.cart$ | async)?.total > 0 ? '| ' + (bookingService.cart$ | async)?.total : '' }}
-  </span>
-</ng-template>
+  <ng-template #showSmall>
+    <span (click)="onCartClick()">
+      <i class="fa fa-shopping-cart"></i>
+      {{ (bookingService.cart$ | async)?.total > 0 ? '| ' + (bookingService.cart$ | async)?.total : '' }}
+    </span>
+  </ng-template>
 </a>
